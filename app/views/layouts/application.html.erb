@@ -6,9 +6,51 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
   <body>
+
+    <nav class="navbar navbar-light bg-faded text-center">
+      <%= link_to root_path, class: 'header-link' do %>
+        <%= image_tag('graham-icon.png', size: '50x50', class: 'header-icon') %>
+        <h1 class="navbar-brand">Gram-Cracker</h1>
+      <% end %>
+    </nav>
+
+  <div class="container text-center">
+    <% if current_user %>
+      You're signed in as <%= current_user.email %>.
+      <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+    <% else %>
+      <p>
+        <%= link_to "Sign In", new_user_session_path, class: 'nav-link' %>
+      </p>
+      <div class="text-center">
+        <input class="entry entry-username" type="text" placeholder="email">
+      </div>
+      <div class="text-center">
+        <input class="entry entry-password" type="password" placeholder="password">
+      </div>
+      <div class="text-center">
+        <button class="btn btn-sm btn-outline">Sign In</button>
+      </div>
+
+      <%= link_to "Sign Up", new_user_registration_path %>
+    <% end %>
+  </div>
+
+    <% if notice.present? %>
+      <p class="notice">
+        <%= notice %>
+      </p>
+    <% end %>
+    <% if alert.present? %>
+      <p class="alert">
+        <%= alert %>
+      </p>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

@@ -1,1 +1,32 @@
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+
+/* HEADER STYLING */
+
+.header-link:hover,
+.header-link:focus {
+  text-decoration: none;
+}
+
+.header-icon {
+  margin-top: -10px;
+}
+
+.navbar-brand {
+  font-family: 'Lobster', cursive;
+  font-size: 2rem;
+}
+
+nav {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+/* INPUTS */
+
+input.entry {
+  padding-left: .5rem;
+}
+
+.entry {
+  margin-bottom: 10px;
+}

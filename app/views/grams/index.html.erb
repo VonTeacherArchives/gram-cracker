@@ -1,4 +1,16 @@
-<div class="container">
-  <h1>Gram-Cracker</h1>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Graham-Cracker-Stack.jpg/250px-Graham-Cracker-Stack.jpg" alt="graham cracker">
+<div class="container text-center">
+  <% if current_user.present? %>
+  <p>
+    <%= link_to 'Add-a-gram', new_gram_path %>
+  </p>
+  <% end %>
+  <h2>Index Page</h2>
+    <% @grams.each do |g| %>
+      <p>
+        <%= g.caption %>
+      </p>
+      <p>
+        - <%= (g.created_at).strftime("%A, %B %d") %>
+      </p>
+    <% end %>
 </div>
