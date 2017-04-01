@@ -79,12 +79,15 @@ RSpec.describe GramsController, type: :controller do
   end
 
   describe 'grams#edit action' do
-    it 'should ' do
-
+    it 'should show the edit form if the gram is found' do
+      gram = FactoryGirl.create(:gram)
+      get :edit, params: { id: gram.id }
+      expect(response).to have_http_status(:success)
     end
 
     it 'should return 404 if there is no gram to edit' do
-
+      get :edit, params: { id: 'NOGRAM' }
+      expect(response).to have_http_status(:not_found)
     end
-
+  end
 end
