@@ -90,4 +90,27 @@ RSpec.describe GramsController, type: :controller do
       expect(response).to have_http_status(:not_found)
     end
   end
+
+  describe 'grams#update action' do
+    it 'should allows users to update grams' do
+      gram = FactoryGirl.create(:gram, caption: 'initial')
+      patch :update, params: { id: gram.id, gram: { caption: 'changed' } }
+      expect(response).to redirect_to root_path
+      gram.reload
+      expect(gram.caption).to eq 'changed'
+    end
+
+    it 'should return 404 if there is no gram to update' do
+      patch :update, params: { id: 'GTFO', gram: { caption: 'changed' } }
+      expect(response).to have_http_status(:not_found)
+    end
+
+    it 'should render the edit form with HTTP status unprocessable_entity' do
+      gram = FactoryGirl.create(:gram, caption: 'initial')
+      patch :update, params: { id: gram.id, gram: { caption: '' } }
+      expect(response).to have_http_status(:unprocessable_entity)
+      gram.reload
+      expect(gram.caption).to eq 'initial'
+    end
+  end
 end

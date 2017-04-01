@@ -23,6 +23,20 @@ class GramsController < ApplicationController
     @gram = Gram.find(params[:id])
   end
 
+  def edit
+    @gram = Gram.find(params[:id])
+  end
+
+  def update
+    @gram = Gram.find(params[:id])
+    @gram.update_attributes(gram_params)
+    if @gram.valid?
+      redirect_to root_path
+    else
+      render :edit, status: 422
+    end
+  end
+
   private
 
   def gram_params
