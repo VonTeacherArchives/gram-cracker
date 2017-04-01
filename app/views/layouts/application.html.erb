@@ -18,28 +18,6 @@
       <% end %>
     </nav>
 
-  <div class="container text-center">
-    <% if current_user %>
-      You're signed in as <%= current_user.email %>.
-      <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-    <% else %>
-      <p>
-        <%= link_to "Sign In", new_user_session_path, class: 'nav-link' %>
-      </p>
-      <div class="text-center">
-        <input class="entry entry-username" type="text" placeholder="email">
-      </div>
-      <div class="text-center">
-        <input class="entry entry-password" type="password" placeholder="password">
-      </div>
-      <div class="text-center">
-        <button class="btn btn-sm btn-outline">Sign In</button>
-      </div>
-
-      <%= link_to "Sign Up", new_user_registration_path %>
-    <% end %>
-  </div>
-
     <% if notice.present? %>
       <p class="notice">
         <%= notice %>

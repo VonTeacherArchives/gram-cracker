@@ -1,5 +1,6 @@
 class GramsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
+  rescue_from ActiveRecord::RecordNotFound, with: :render_404_not_found
 
   def index
     @grams = Gram.all
@@ -18,10 +19,18 @@ class GramsController < ApplicationController
     end
   end
 
+  def show
+    @gram = Gram.find(params[:id])
+  end
+
   private
 
   def gram_params
     params.require(:gram).permit(:caption)
+  end
+
+  def render_404_not_found
+    render file: 'public/404.html', status: :not_found
   end
 
 end
