@@ -2,6 +2,9 @@ class GramsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
 
+  # 404 not_found
+  # 422 unprocessable_entity
+
   def index
     @grams = Gram.all
   end
@@ -12,11 +15,13 @@ class GramsController < ApplicationController
 
   def create
     @gram = current_user.grams.create(gram_params)
-    if @gram.valid?
-      redirect_to root_path
-    else
-      render :new, status: :unprocessable_entity
-    end
+    # if @gram.valid?
+    #   redirect_to root_path
+    # else
+    #   render :new, status: :unprocessable_entity
+    # end
+    return render :new, status: :unprocessable_entity unless @gram.valid?
+    redirect_to root_path
   end
 
   def show
@@ -30,11 +35,15 @@ class GramsController < ApplicationController
   def update
     @gram = Gram.find(params[:id])
     @gram.update_attributes(gram_params)
-    if @gram.valid?
-      redirect_to root_path
-    else
-      render :edit, status: 422
-    end
+    # if @gram.valid?
+    #   redirect_to root_path
+    # else
+    #   render :edit, status: :unprocessable_entity
+    # end
+
+    # Guard clause
+    return render :edit, status: :unprocessable_entity unless @gram.valid?
+    redirect_to root_path
   end
 
   private
