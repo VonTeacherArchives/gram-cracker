@@ -9,7 +9,6 @@ RSpec.describe GramsController, type: :controller do
   end
 
   describe 'grams#new action' do
-
     it "should require users to be logged in" do
       get :new
       expect(response).to redirect_to new_user_session_path
@@ -18,7 +17,6 @@ RSpec.describe GramsController, type: :controller do
     it "should successfully show the new form" do
       user = FactoryGirl.create(:user)
       sign_in user
-
       get :new
       expect(response).to have_http_status(:success)
     end
@@ -111,6 +109,20 @@ RSpec.describe GramsController, type: :controller do
       expect(response).to have_http_status(:unprocessable_entity)
       gram.reload
       expect(gram.caption).to eq 'initial'
+    end
+  end
+
+  describe 'grams#destroy action' do
+    it 'removes the gram from the database' do
+      gram = FactoryGirl.create(:gram)
+      delete :destroy, gram: { id: gram.id }
+      expect(response).to redirect_to root_path
+      gram = Gram.find(gram.id)
+      expect(response).to have_http_status(:not_found)
+    end
+    it 'responds with not_found if the gram does not exist' do
+      delete :destroy, gram: { id: 'NOID' }
+      expect(response).to have_http_status(:not_found)
     end
   end
 end
