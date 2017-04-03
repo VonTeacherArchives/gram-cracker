@@ -1,7 +1,8 @@
 class GramsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
-  rescue_from ActiveRecord::RecordNotFound, with: :render_404
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  rescue_from ActiveRecord::RecordNotFound, with: :render_404_not_found
 
+  # 403 forbidden
   # 404 not_found
   # 422 unprocessable_entity
 
@@ -26,10 +27,12 @@ class GramsController < ApplicationController
 
   def edit
     @gram = Gram.find(params[:id])
+    return render_403_forbidden unless @gram.user == current_user
   end
 
   def update
     @gram = Gram.find(params[:id])
+    return render_403_forbidden unless @gram.user == current_user
     @gram.update_attributes(gram_params)
     # Guard clause
     return render :edit, status: :unprocessable_entity unless @gram.valid?
@@ -38,7 +41,8 @@ class GramsController < ApplicationController
 
   def destroy
     @gram = Gram.find_by_id(params[:id])
-    return render_404 if @gram.blank?
+    return render_404_not_found if @gram.blank?
+    return render_403_forbidden unless @gram.user == current_user
     @gram.destroy
     redirect_to root_path
   end
@@ -49,8 +53,12 @@ class GramsController < ApplicationController
     params.require(:gram).permit(:caption)
   end
 
-  def render_404
+  def render_404_not_found
     render file: 'public/404.html', status: :not_found
+  end
+
+  def render_403_forbidden
+    render file: 'public/403.html', status: :forbidden
   end
 
 end
