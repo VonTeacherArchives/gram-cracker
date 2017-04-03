@@ -115,13 +115,13 @@ RSpec.describe GramsController, type: :controller do
   describe 'grams#destroy action' do
     it 'removes the gram from the database' do
       gram = FactoryGirl.create(:gram)
-      delete :destroy, gram: { id: gram.id }
+      delete :destroy, params: { id: gram.id }
       expect(response).to redirect_to root_path
-      gram = Gram.find(gram.id)
-      expect(response).to have_http_status(:not_found)
+      gram = Gram.find_by_id(gram.id)
+      expect(gram).to eq nil
     end
     it 'responds with not_found if the gram does not exist' do
-      delete :destroy, gram: { id: 'NOID' }
+      delete :destroy, params: { id: 'NO_ID' }
       expect(response).to have_http_status(:not_found)
     end
   end

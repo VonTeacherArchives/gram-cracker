@@ -15,11 +15,7 @@ class GramsController < ApplicationController
 
   def create
     @gram = current_user.grams.create(gram_params)
-    # if @gram.valid?
-    #   redirect_to root_path
-    # else
-    #   render :new, status: :unprocessable_entity
-    # end
+    # Guard clause
     return render :new, status: :unprocessable_entity unless @gram.valid?
     redirect_to root_path
   end
@@ -35,14 +31,15 @@ class GramsController < ApplicationController
   def update
     @gram = Gram.find(params[:id])
     @gram.update_attributes(gram_params)
-    # if @gram.valid?
-    #   redirect_to root_path
-    # else
-    #   render :edit, status: :unprocessable_entity
-    # end
-
     # Guard clause
     return render :edit, status: :unprocessable_entity unless @gram.valid?
+    redirect_to root_path
+  end
+
+  def destroy
+    @gram = Gram.find_by_id(params[:id])
+    return render_404 if @gram.blank?
+    @gram.destroy
     redirect_to root_path
   end
 
