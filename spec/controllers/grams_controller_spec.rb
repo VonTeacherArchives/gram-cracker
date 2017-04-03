@@ -87,6 +87,12 @@ RSpec.describe GramsController, type: :controller do
       get :edit, params: { id: 'NOGRAM' }
       expect(response).to have_http_status(:not_found)
     end
+
+    it 'should not let unauthorized user edit a gram' do
+      gram = FactoryGirl.create(:gram)
+      get :edit, params: { id: gram.id }
+      expect(response).to redirect_to new_user_session_path
+    end
   end
 
   describe 'grams#update action' do
@@ -110,6 +116,12 @@ RSpec.describe GramsController, type: :controller do
       gram.reload
       expect(gram.caption).to eq 'initial'
     end
+
+    it 'should not let unauthorized users update a gram' do
+      gram = FactoryGirl.create(:gram, caption: 'try and update me')
+      patch :update, params: { id: gram.id, gram: { caption: 'updated!' } }
+      expect(response).to redirect_to new_user_session_path
+    end
   end
 
   describe 'grams#destroy action' do
@@ -120,9 +132,16 @@ RSpec.describe GramsController, type: :controller do
       gram = Gram.find_by_id(gram.id)
       expect(gram).to eq nil
     end
+
     it 'responds with not_found if the gram does not exist' do
       delete :destroy, params: { id: 'NO_ID' }
       expect(response).to have_http_status(:not_found)
+    end
+
+    it 'should not let unauthorized users destroy a gram' do
+      gram = FactoryGirl.create(:gram)
+      delete :destroy, params: { id: gram.id }
+      expect(response).to redirect_to new_user_session_path
     end
   end
 end
