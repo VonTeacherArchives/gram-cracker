@@ -43,6 +43,8 @@ gem 'simple_form'
 gem 'devise'
 # CarrierWave
 gem 'carrierwave', '~> 1.0'
+# Font Awesome Rails
+gem 'font-awesome-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

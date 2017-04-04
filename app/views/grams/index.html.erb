@@ -1,19 +1,29 @@
 <div class="container text-center">
   <% if current_user.present? %>
-  <p>
-    <%= link_to 'Add-a-gram', new_gram_path %>
+  <p class="add-a-gram">
+    <%= link_to new_gram_path do %>
+      Add-a-gram <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+    <% end %>
   </p>
   <% end %>
-  <h2>Index Page</h2>
-    <% @grams.each do |g| %>
-      <p>
-        <%= image_tag g.picture %>
-      </p>
-      <p>
-        <%= g.caption %>
-      </p>
-      <p>
-        - <%= (g.created_at).strftime("%A, %B %d") %>
-      </p>
-    <% end %>
+
+  <% @grams.each do |g| %>
+    <div class="gram-wrapper">
+      <div class="row gram-row">
+        <div class="col-6 gram-date">
+          <%= (g.created_at).strftime("%A, %B %d") %>
+        </div>
+        <div class="col-6 gram-like">
+          <i class="fa fa-heart-o" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div>
+        <%= image_tag g.picture, class: 'gram-picture' %>
+      </div>
+      <div class="gram-caption">
+        <span class="gram-user"><%= g.user.email.split('@')[0] %></span> <%= g.caption %>
+      </div>
+    </div>
+  <% end %>
+
 </div>

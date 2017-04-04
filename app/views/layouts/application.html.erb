@@ -16,17 +16,24 @@
         <%= image_tag('graham-icon.png', size: '50x50', class: 'header-icon') %>
         <h1 class="navbar-brand">Gram-Cracker</h1>
       <% end %>
+      <% if current_user %>
+        <%= current_user.email %>
+        <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to new_user_session_path, class: 'inline-nav' do %>
+          Sign In <i class="fa fa-sign-in" aria-hidden="true"></i>
+        <% end %>
+        <%= link_to new_user_registration_path, class: 'inline-nav' do %>
+          Join <i class="fa fa-user-plus" aria-hidden="true"></i>
+        <% end %>
+      <% end %>
     </nav>
 
     <% if notice.present? %>
-      <p class="notice">
-        <%= notice %>
-      </p>
+      <p class="alert alert-info"><%= notice %></p>
     <% end %>
     <% if alert.present? %>
-      <p class="alert">
-        <%= alert %>
-      </p>
+      <p class="alert alert-danger"><%= alert %></p>
     <% end %>
 
     <%= yield %>

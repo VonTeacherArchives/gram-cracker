@@ -1,4 +1,5 @@
 @import "bootstrap";
+@import "font-awesome";
 @import url('https://fonts.googleapis.com/css?family=Lobster');
 
 /* HEADER STYLING */
@@ -12,6 +13,12 @@
   margin-top: -10px;
 }
 
+.alert {
+  margin-bottom: 0;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
 .navbar-brand {
   font-family: 'Lobster', cursive;
   font-size: 2rem;
@@ -20,6 +27,74 @@
 nav {
   border-bottom: 1px solid rgba(0,0,0,0.1);
 }
+
+.inline-nav {
+  display: inline-block;
+}
+
+/* COMMON TOP ELEMENTS */
+
+.container {
+  max-width: 480px;
+}
+
+.add-a-gram {
+  margin-top: 15px;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.add-a-gram a {
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 10px;
+  padding: 5px 10px;
+  color: black;
+  background-color: #F7F7F7;
+}
+
+/* GRAM DETAILING */
+
+.gram-wrapper {
+  border: 1px solid;
+  border-color: #DDD #BBB #BBB #DDD;
+  margin-bottom: 2rem;
+}
+
+.gram-row {
+  padding-top: 15px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-bottom: 15px;
+}
+
+.gram-date {
+  text-align: left;
+}
+
+.gram-like {
+  text-align: right;
+  font-weight: bold;
+}
+
+.gram-like:hover {
+  color: red;
+}
+
+.gram-picture {
+  width: 100%;
+  max-width: 480px;
+  // border:
+}
+
+.gram-caption {
+  padding: 15px;
+  text-align: left;
+}
+
+.gram-user {
+  font-weight: bold;
+}
+
 
 /* INPUTS */
 
