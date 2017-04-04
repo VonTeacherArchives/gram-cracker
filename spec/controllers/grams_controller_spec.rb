@@ -49,18 +49,6 @@ RSpec.describe GramsController, type: :controller do
       expect(response).to have_http_status(:unprocessable_entity)
       expect(Gram.count).to eq 0
     end
-
-    # it 'should accept a caption for 6 characters' do
-    #   post :create, params: { gram: { caption: 'abcdef' } }
-    #   expect(response).to redirect_to root_path
-    #   expect(Gram.count).to eq(1)
-    # end
-    #
-    # it 'should deny a caption of less than 6 characters' do
-    #   post :create, params: { gram: { caption: '12345' } }
-    #   expect(response).to have_http_status(:unprocessable_entity)
-    #   expect(Gram.count).to eq(0)
-    # end
   end
 
   describe 'grams#show action' do
@@ -142,7 +130,7 @@ RSpec.describe GramsController, type: :controller do
       gram = FactoryGirl.create(:gram)
       user = FactoryGirl.create(:user)
       sign_in user
-      patch :update, params: { id: gram.id, gram: { caption: 'someone elses junk' } }
+      patch :update, params: { id: gram.id, gram: { caption: 'someone else\'s junk' } }
       expect(response).to have_http_status(:forbidden)
       expect(gram.caption).to eq('hello!')
     end
