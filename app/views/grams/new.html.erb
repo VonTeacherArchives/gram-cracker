@@ -2,6 +2,7 @@
   <h1>Add a Gram-Cracker:</h1>
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Graham-Cracker-Stack.jpg/250px-Graham-Cracker-Stack.jpg" alt="graham cracker">
   <%= simple_form_for @gram do |f| %>
+    <%= f.input :picture %>
     <%= f.input :caption %>
     <%= f.submit 'Gram-it!' %>
   <% end %>

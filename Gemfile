@@ -41,6 +41,8 @@ gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'simple_form'
 # Devise
 gem 'devise'
+# CarrierWave
+gem 'carrierwave', '~> 1.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

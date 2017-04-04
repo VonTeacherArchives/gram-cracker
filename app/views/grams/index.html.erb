@@ -7,6 +7,9 @@
   <h2>Index Page</h2>
     <% @grams.each do |g| %>
       <p>
+        <%= image_tag g.picture %>
+      </p>
+      <p>
         <%= g.caption %>
       </p>
       <p>
