@@ -13,7 +13,7 @@ class GramsController < ApplicationController
   # 422 unprocessable_entity
 
   def index
-    @grams = Gram.all.order('created_at DESC')
+    @grams = Gram.all.order('created_at DESC')#.includes(:user)
   end
 
   def new
