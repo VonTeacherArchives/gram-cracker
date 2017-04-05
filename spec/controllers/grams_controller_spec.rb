@@ -25,7 +25,7 @@ RSpec.describe GramsController, type: :controller do
   describe 'grams#create action' do
 
     it 'should require signed in user on form submission' do
-      post :create, params: { gram: { caption: 'Hello!' } }
+      post :create, params: { gram: { caption: 'hello!' } }
       expect(response).to redirect_to new_user_session_path
     end
 
@@ -43,7 +43,7 @@ RSpec.describe GramsController, type: :controller do
       expect(response).to redirect_to root_path
 
       gram = Gram.last
-      expect(gram.caption).to eq('Hello!')
+      expect(gram.caption).to eq('hello!')
       expect(gram.user).to eq(user)
     end
 

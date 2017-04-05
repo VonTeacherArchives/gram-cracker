@@ -11,10 +11,7 @@ CarrierWave.configure do |config|
   }
 
   if Rails.env.development?
-    config.cache_dir = '/vagrant/src/grammable/public'
-    config.root = '/vagrant/src/grammable/public'
-    config.storage = :file
-  else
-    config.storage      = :aws
+    config.cache_dir = '/home/vagrant/uploads_tmp/tmp/uploads'
+    config.root = '/home/vagrant/uploads_tmp/tmp'
   end
 end
