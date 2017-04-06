@@ -1,0 +1,18 @@
+<div class="container text-center">
+  <div class="gram-wrapper">
+    <div class="row gram-row">
+      <div class="col-6 gram-date">
+        <%= (@gram.created_at).strftime("%A, %B %d") %>
+      </div>
+      <div class="col-6 gram-like">
+        <i class="fa fa-heart-o" aria-hidden="true"></i>
+      </div>
+    </div>
+    <div>
+      <%= image_tag @gram.picture, class: 'gram-picture' %>
+    </div>
+    <div class="gram-caption">
+      <span class="gram-user"><%= @gram.user.email.split('@')[0] %></span> <%= @gram.caption %>
+    </div>
+  </div>
+</div>
