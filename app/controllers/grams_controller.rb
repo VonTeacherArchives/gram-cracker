@@ -63,11 +63,4 @@ class GramsController < ApplicationController
     params.require(:gram).permit(:picture, :caption)
   end
 
-  def render_not_found(status = :not_found)
-    if status == :forbidden
-      render file: 'public/403.html', status: status
-    else
-      render file: 'public/404.html', status: status
-    end
-  end
 end
