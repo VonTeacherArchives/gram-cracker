@@ -4,13 +4,57 @@
 
 /* HEADER STYLING */
 
-.header-link:hover,
-.header-link:focus {
+$app-gray: #F7F7F7;
+$phone-break: 400px;
+$app-width: 480px;
+
+header {
+  background-color: $app-gray;
+  max-width: $app-width;
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.header-options {
+  margin-left: 10px;
+  margin-bottom: 5px;
+  @media screen and (max-width: $phone-break) {
+    float: none !important;
+    text-align: center;
+    margin-left: -7px;
+  }
+}
+
+.header-options a {
+  color: black;
   text-decoration: none;
 }
 
-.header-icon {
-  margin-top: -10px;
+header img {
+  vertical-align: bottom;
+}
+
+header h1 {
+  font-size: 2rem;
+}
+
+.main-header {
+  display: inline;
+  font-family: 'Lobster', cursive;
+  vertical-align: super;
+}
+
+.user-options {
+  margin-top: 14px;
+  margin-right: 10px;
+  color: black;
+  @media screen and (max-width: $phone-break) {
+    float: none !important;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 14px;
+  }
 }
 
 .alert {
@@ -19,37 +63,43 @@
   letter-spacing: 2px;
 }
 
-.navbar-brand {
-  font-family: 'Lobster', cursive;
-  font-size: 2rem;
-}
-
-nav {
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-}
-
-.inline-nav {
-  display: inline-block;
+.clear {
+  clear: both;
 }
 
 /* COMMON TOP ELEMENTS */
 
 .container {
-  max-width: 480px;
+  max-width: $app-width;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.index-user-email {
+  @media screen and (max-width: $app-width) {
+    float: none !important;
+    text-align: center;
+    margin-top: 7px;
+    margin-bottom: -4px;
+  }
 }
 
 .add-a-gram {
   margin-top: 15px;
   text-align: right;
   text-transform: uppercase;
+  @media screen and (max-width: $app-width) {
+    float: none !important;
+    text-align: center;
+  }
 }
 
 .add-a-gram a {
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.7);
   border-radius: 10px;
   padding: 5px 10px;
   color: black;
-  background-color: #F7F7F7;
+  background-color: $app-gray;
 }
 
 /* GRAM DETAILING */
@@ -98,10 +148,23 @@ nav {
 
 /* INPUTS */
 
-input.entry {
-  padding-left: .5rem;
+.custom-file-upload {
+  cursor: pointer;
+  border: 1px solid rgba(0,0,0,0.7);
+  border-radius: 5px;
+  padding: 5px 10px;
+  transition: 0.4s;
 }
 
-.entry {
-  margin-bottom: 10px;
+.custom-file-upload:hover {
+  color: white;
+  background-color: black;
+}
+
+abbr[title="required"] {
+  display: none;
+}
+
+input[type="file"] {
+  display: none;
 }

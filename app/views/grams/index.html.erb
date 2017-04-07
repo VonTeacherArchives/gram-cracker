@@ -1,5 +1,6 @@
 <div class="container text-center">
   <% if current_user.present? %>
+  <p class="index-user-email float-left"><%= current_user.email %></p>
   <p class="add-a-gram">
     <%= link_to new_gram_path do %>
       Add-a-gram <i class="fa fa-plus-square-o" aria-hidden="true"></i>

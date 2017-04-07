@@ -7,41 +7,41 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- for Facebook -->
-    <meta property="og:title" content="Gram-Cracker App by Vaughn Weiss" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://vaughn-weiss-gram-cracker.herokuapp.com/assets/graham-icon-b4a31ad7701189798626b37d449a79271013d4cfb3d13795f3476ee0488dbec8.png" />
-    <meta property="og:url" content="https://vaughn-weiss-gram-cracker.herokuapp.com/" />
-    <meta property="og:description" content="My latest app lesson. Feel free to contribute with a picture of your own!" />
   </head>
 
   <body>
 
-    <nav class="navbar navbar-light bg-faded text-center">
-      <%= link_to root_path, class: 'header-link' do %>
-        <%= image_tag('graham-icon.png', size: '50x50', class: 'header-icon') %>
-        <h1 class="navbar-brand">Gram-Cracker</h1>
-      <% end %>
+    <header>
+      <div class="header-options float-left">
+        <%= link_to root_path do %>
+          <%= image_tag('graham-icon.png', size: '50x50') %>
+          <h1 class="main-header">Gram-Cracker</h1>
+        <% end %>
+      </div>
       <% if current_user %>
-        <%= current_user.email %>
-        <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+        <div class="user-options float-right">
+          <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
+        </div>
+        <div class="clear"></div>
       <% else %>
-        <%= link_to new_user_session_path, class: 'inline-nav' do %>
-          Sign In <i class="fa fa-sign-in" aria-hidden="true"></i>
-        <% end %>
-        <%= link_to new_user_registration_path, class: 'inline-nav' do %>
-          Join <i class="fa fa-user-plus" aria-hidden="true"></i>
-        <% end %>
+        <div class="user-options float-right">
+          <%= link_to 'Sign Up', new_user_registration_path %> or
+          <%= link_to 'Log In', new_user_session_path %>
+        </div>
+        <div class="clear"></div>
       <% end %>
-    </nav>
+    </header>
 
-    <% if notice.present? %>
-      <p class="alert alert-info"><%= notice %></p>
-    <% end %>
-    <% if alert.present? %>
-      <p class="alert alert-danger"><%= alert %></p>
-    <% end %>
+    <div class="container">
+      <% if notice.present? %>
+        <p class="alert alert-info"><%= notice %></p>
+      <% end %>
+      <% if alert.present? %>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
+    </div>
 
     <%= yield %>
+
   </body>
 </html>
