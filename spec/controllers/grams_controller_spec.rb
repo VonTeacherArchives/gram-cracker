@@ -85,7 +85,7 @@ RSpec.describe GramsController, type: :controller do
       expect(response).to have_http_status(:not_found)
     end
 
-    it 'should not let unauthorized user edit a gram' do
+    it 'should not let an unregistered user edit a gram' do
       gram = FactoryGirl.create(:gram)
       get :edit, params: { id: gram.id }
       expect(response).to redirect_to new_user_session_path
@@ -104,10 +104,13 @@ RSpec.describe GramsController, type: :controller do
     it 'should allows users to update grams' do
       gram = FactoryGirl.create(:gram, caption: 'initial')
       sign_in gram.user
-      patch :update, params: { id: gram.id, gram: { caption: 'changed' } }
+      # PUT - more thorough update
+      # PATCH - not updating entire object (newer)
+      patch :update, params: { id: gram.id, gram: { caption: 'changed', picture: fixture_file_upload('/picture-copy.jpg', 'image/jpg') } }
       expect(response).to redirect_to root_path
       gram.reload
       expect(gram.caption).to eq 'changed'
+      expect(gram.picture.url).to include('picture-copy.jpg')
     end
 
     it 'should return 404 if there is no gram to update' do
