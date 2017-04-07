@@ -42,13 +42,13 @@ gem 'simple_form'
 # Devise
 gem 'devise'
 # CarrierWave
-gem 'carrierwave-aws'
+gem 'carrierwave'
 # Font Awesome Rails
 gem 'font-awesome-rails'
 # Figaro for use with AWS S3
 gem 'figaro'
 # fog
-# gem 'fog'
+gem 'fog'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
