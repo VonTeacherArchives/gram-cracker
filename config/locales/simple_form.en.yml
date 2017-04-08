@@ -34,4 +34,5 @@ en:
         email: 'Email address'
         password: 'Password'
         password_confirmation: 'Re-type your password'
-        caption: 'Enter a description'
+        caption: 'Enter a description...'
+        message: 'Leave a comment...'
