@@ -21,3 +21,20 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    errors:
+      models:
+        gram:
+          attributes:
+            picture:
+              blank: "You must attach a picture."
+            caption:
+              blank: "You must enter a description."
+        user:
+          attributes:
+            email:
+              blank: "Please enter an email address."
+            password:
+              blank: "Please enter a password."
+            password_confirmation:
+              confirmation: "You did not confirm your password."

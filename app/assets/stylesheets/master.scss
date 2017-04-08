@@ -5,7 +5,7 @@
 /* HEADER STYLING */
 
 $app-gray: #F7F7F7;
-$phone-break: 400px;
+$phone-break: 420px;
 $app-width: 480px;
 
 header {
@@ -67,6 +67,11 @@ header h1 {
   clear: both;
 }
 
+.action-header {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
 /* COMMON TOP ELEMENTS */
 
 .container {
@@ -94,7 +99,8 @@ header h1 {
   }
 }
 
-.add-a-gram a {
+.add-a-gram a,
+.input-gram-button {
   border: 1px solid rgba(0,0,0,0.7);
   border-radius: 10px;
   padding: 5px 10px;
@@ -102,11 +108,22 @@ header h1 {
   background-color: $app-gray;
 }
 
+.shared-links {
+  margin-top: 10px;
+  line-height: 2rem;
+}
+
+.shared-links a {
+  color: black;
+}
+
 /* GRAM DETAILING */
 
 .gram-wrapper {
   border: 1px solid;
   border-color: #DDD #BBB #BBB #DDD;
+  border-bottom-right-radius: .25rem;
+  border-bottom-left-radius: .25rem;
   margin-bottom: 2rem;
 }
 
@@ -121,9 +138,20 @@ header h1 {
   text-align: left;
 }
 
-.gram-like {
+.gram-icons {
   text-align: right;
-  font-weight: bold;
+}
+
+.fa-trash-o {
+  margin-right: 5px;
+}
+
+.gram-edit,
+.gram-edit:hover,
+.gram-edit:focus {
+  color: black;
+  text-decoration: none;
+  margin-right: 10px;
 }
 
 .gram-like:hover {
@@ -140,6 +168,10 @@ header h1 {
   padding: 15px;
   text-align: left;
 }
+.gram-comments-listing {
+  padding: 0px 15px 15px 15px;
+  text-align: left;
+}
 
 .gram-user {
   font-weight: bold;
@@ -148,7 +180,21 @@ header h1 {
 
 /* INPUTS */
 
+.form-group label {
+  display: none;
+}
+
+.form-group.comment_message {
+  margin-bottom: 0;
+
+}
+
+.form-control::placeholder {
+  color: rgba(0,0,0,0.4);
+}
+
 .custom-file-upload {
+  display: inline !important;
   cursor: pointer;
   border: 1px solid rgba(0,0,0,0.7);
   border-radius: 5px;
@@ -161,10 +207,61 @@ header h1 {
   background-color: black;
 }
 
-abbr[title="required"] {
+abbr[title="Required"] {
   display: none;
 }
 
+div.gram_picture {
+  text-align: left;
+}
+
 input[type="file"] {
-  display: none;
+  margin-top: -2px;
+  position: absolute;
+  text-indent: -110px;
+  z-index: -1;
+  margin-left: -95px;
+}
+
+input[type="file"]:focus {
+  outline: none;
+}
+
+.vert-help-block {
+  margin-top: 4px;
+  text-align: center;
+  color: #A94442;
+  background-color: #F2DEDE;
+  border-radius: .25rem;
+}
+
+/* COMMENTS */
+
+.gram-bottom-elements {
+  position: relative;
+}
+
+textarea[id="comment_message"] {
+  padding-right: 53px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+.gram-comment-button {
+  font-size: 2rem;
+  color: black;
+  background-color: $app-gray;
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  border: 1px solid #BBB;
+  border-right: 0px;
+  border-radius: .25rem;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  padding: 4px 10px;
 }

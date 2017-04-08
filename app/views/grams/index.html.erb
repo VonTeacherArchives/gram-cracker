@@ -14,15 +14,43 @@
         <div class="col-6 gram-date">
           <%= (g.created_at).strftime("%A, %B %d") %>
         </div>
-        <div class="col-6 gram-like">
-          <i class="fa fa-heart-o" aria-hidden="true"></i>
+        <div class="col-6 gram-icons">
+          <% if current_user && current_user == g.user %>
+            <%= link_to gram_path(g), method: :delete, data: { confirm: 'Are you sure you want to delete this gram?' }, class: 'gram-edit' do %>
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
+            <% end %>
+            <%= link_to edit_gram_path(g), class: 'gram-edit' do %>
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            <% end %>
+          <% end %>
+          <i class="fa fa-heart-o gram-like" aria-hidden="true"></i>
         </div>
       </div>
       <div>
         <%= image_tag g.picture, class: 'gram-picture' %>
       </div>
-      <div class="gram-caption">
-        <span class="gram-user"><%= g.user.email.split('@')[0] %></span> <%= g.caption %>
+      <div class="gram-bottom-elements">
+        <div class="gram-caption">
+          <span class="gram-user">
+            <%= g.user.email.split('@')[0] %>
+          </span> <%= g.caption %>
+        </div>
+        <% if g.comments.present? %>
+          <div class="gram-comments-listing">
+            <% g.comments.each do |comment| %>
+              <div><span class="gram-user">
+                <%= comment.user.email.split('@')[0] %>
+              </span> <%= comment.message %></div>
+            <% end %>
+          </div>
+        <% end %>
+        <div class="gram-comments-input">
+          <%= simple_form_for Comment.new, url: gram_comments_path(g) do |f| %>
+            <%= f.input :message %>
+            <%= f.submit '+', class: 'gram-comment-button' %>
+          <% end %>
+        </div>
+        <div class="clear"></div>
       </div>
     </div>
   <% end %>

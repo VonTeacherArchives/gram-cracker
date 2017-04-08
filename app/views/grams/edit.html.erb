@@ -1,4 +1,8 @@
-<%= simple_form_for @gram do |f| %>
-  <%= f.caption %>
-  <%= f.submit %>
-<% end %>
+<div class="container text-center">
+  <h2 class="action-header">Edit your Crumb:</h2>
+  <%= simple_form_for @gram do |f| %>
+    <%= f.input :picture, label: 'Upload a Picture', label_html: { class: 'custom-file-upload' } %>
+    <%= f.input :caption %>
+    <%= f.submit 'Gram-it!', class: 'input-gram-button' %>
+  <% end %>
+</div>
