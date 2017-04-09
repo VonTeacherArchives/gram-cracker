@@ -1,0 +1,13 @@
+<% if current_user && current_user == g.user %>
+  <%= link_to gram_path(g), method: :delete, data: { confirm: 'Are you sure you want to delete this gram?' }, class: 'gram-edit' do %>
+    <i class="fa fa-trash-o" aria-hidden="true"></i>
+  <% end %>
+  <%= link_to edit_gram_path(g), class: 'gram-edit' do %>
+    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+  <% end %>
+  <i data-gram-id="<%= g.id %>" data-liking-user="<%= current_user.email.split('@')[0] %>" class="fa fa-heart-o gram-like heart-me" aria-hidden="true"></i>
+<% elsif current_user %>
+  <i data-gram-id="<%= g.id %>" data-liking-user="<%= current_user.email.split('@')[0] %>" class="fa fa-heart-o gram-like heart-me" aria-hidden="true"></i>
+<% else %>
+  <i class="fa fa-heart-o gram-like heart-me" aria-hidden="true"></i>
+<% end %>

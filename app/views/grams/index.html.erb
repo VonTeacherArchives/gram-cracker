@@ -14,17 +14,13 @@
         <div class="col-6 gram-date">
           <%= (g.created_at).strftime("%A, %B %d") %>
         </div>
+
         <div class="col-6 gram-icons">
-          <% if current_user && current_user == g.user %>
-            <%= link_to gram_path(g), method: :delete, data: { confirm: 'Are you sure you want to delete this gram?' }, class: 'gram-edit' do %>
-              <i class="fa fa-trash-o" aria-hidden="true"></i>
-            <% end %>
-            <%= link_to edit_gram_path(g), class: 'gram-edit' do %>
-              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-            <% end %>
-          <% end %>
-          <i class="fa fa-heart-o gram-like" aria-hidden="true"></i>
+          <%= render partial: 'gram-top-bar', locals: { g: g }, remote: true %>
+
+          <span class="heart-counter-<%= g.id %>"><%= g.likes.count %></span>
         </div>
+
       </div>
       <div>
         <%= image_tag g.picture, class: 'gram-picture' %>
@@ -54,5 +50,22 @@
       </div>
     </div>
   <% end %>
-
 </div>
+
+<script>
+  $(function() {
+    $('.heart-me').click(function( event ) {
+      var gramToLike = $( event.target ).data('gram-id');
+      var countToIncrement = $('.heart-counter-' + gramToLike);
+      var gramLikeCount = parseInt(countToIncrement.html());
+      console.log(gramLikeCount);
+      gramLikeCount++;
+      console.log(gramLikeCount);
+      $.ajax({
+        type: 'POST',
+        url: '/grams/' + gramToLike + '/likes'
+      });
+      countToIncrement.html(gramLikeCount);
+    })
+  });
+</script>

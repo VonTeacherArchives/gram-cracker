@@ -3,5 +3,6 @@ class Gram < ApplicationRecord
   validates :picture, presence: true
   belongs_to :user
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
   mount_uploader :picture, PictureUploader
 end
