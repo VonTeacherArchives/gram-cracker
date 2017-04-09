@@ -56,16 +56,10 @@
   $(function() {
     $('.heart-me').click(function( event ) {
       var gramToLike = $( event.target ).data('gram-id');
-      var countToIncrement = $('.heart-counter-' + gramToLike);
-      var gramLikeCount = parseInt(countToIncrement.html());
-      console.log(gramLikeCount);
-      gramLikeCount++;
-      console.log(gramLikeCount);
       $.ajax({
         type: 'POST',
         url: '/grams/' + gramToLike + '/likes'
       });
-      countToIncrement.html(gramLikeCount);
     })
   });
 </script>
