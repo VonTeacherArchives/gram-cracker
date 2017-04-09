@@ -12,7 +12,7 @@
     <div class="gram-wrapper">
       <div class="row gram-row">
         <div class="col-6 gram-date">
-          <%= (g.created_at).strftime("%A, %B %d") %>
+          <%= time_ago_in_words(g.created_at) %> ago
         </div>
 
         <div class="col-6 gram-icons">
