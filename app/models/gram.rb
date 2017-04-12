@@ -5,4 +5,8 @@ class Gram < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   mount_uploader :picture, PictureUploader
+
+  def as_json( options={} )
+    super(options).merge(:likes => self.likes.count)
+  end
 end

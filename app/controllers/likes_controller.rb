@@ -5,8 +5,11 @@ class LikesController < ApplicationController
     gram = Gram.find(params[:gram_id])
     current_user.likes.create(gram: gram)
     respond_to do |format|
-      format.html { redirect_to root_path }
-      format.js
+      format.json do
+        render json: gram
+      # format.html { redirect_to root_path }
+      # format.js
+      end
     end
   end
 

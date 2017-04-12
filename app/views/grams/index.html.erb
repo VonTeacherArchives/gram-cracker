@@ -18,7 +18,7 @@
         <div class="col-6 gram-icons">
           <%= render partial: 'gram-top-bar', locals: { g: g }, remote: true %>
 
-          <span class="heart-counter-<%= g.id %>"><%= g.likes.count %></span>
+          <span class="heart-counter heart-counter-<%= g.id %>"><%= g.likes.count %></span>
         </div>
 
       </div>
@@ -59,7 +59,11 @@
       $.ajax({
         type: 'POST',
         url: '/grams/' + gramToLike + '/likes'
-      });
+      }).success(function( data ) {
+        console.log(data);
+        $('.heart-counter-' + data.id).html(data.likes);
+      })
+
     })
   });
 </script>
